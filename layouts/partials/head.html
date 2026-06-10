@@ -1,0 +1,24 @@
+{{ $title := site.Title }}
+{{ if not .IsHome }}
+  {{ $title = printf "%s | %s" .Title site.Title }}
+{{ end }}
+{{ $description := site.Params.description }}
+{{ with .Params.description }}
+  {{ $description = . }}
+{{ end }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ $description }}">
+<title>{{ $title }}</title>
+<link rel="canonical" href="{{ .Permalink }}">
+{{ with resources.Get "css/main.css" }}
+  {{ $css := . | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
+{{ with resources.Get "js/view-transition-types.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $js.RelPermalink }}"></script>
+{{ end }}
+{{ with .OutputFormats.Get "RSS" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{ end }}

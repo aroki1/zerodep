@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="page-frame">
+      {{ if not .IsHome }}
+        <header class="site-header" aria-label="Site header">
+          <a class="site-brand" href="/" aria-label="zerodependencies.dev home">
+            <img src="/images/logo.png" alt="" aria-hidden="true">
+            <span>{{ site.Params.author | default site.Title }}</span>
+          </a>
+          {{ partial "nav.html" (dict "Page" . "Class" "site-nav") }}
+        </header>
+      {{ end }}
+      <div class="page-content-transition">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </div>
+  </body>
+</html>

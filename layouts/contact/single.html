@@ -1,0 +1,30 @@
+{{ define "main" }}
+<main id="content" class="page-main page-main--centered page--contact" tabindex="-1">
+  <header class="page-header">
+    <h1>{{ lower .Title }}</h1>
+  </header>
+  {{ with .Content }}
+    <div class="content">
+      {{ . }}
+    </div>
+  {{ end }}
+  {{ if hugo.Data.contact }}
+    <ul class="contact-list" aria-label="Contact links">
+      {{ range hugo.Data.contact }}
+        <li>
+          <span class="contact-list__icon" aria-hidden="true">
+            {{ with .icon }}
+              {{ readFile (printf "static/icons/%s.svg" .) | safeHTML }}
+            {{ end }}
+          </span>
+          <span class="contact-list__label">{{ lower .label }}</span>
+          <span class="contact-list__arrow" aria-hidden="true">-></span>
+          <a href="{{ .url }}"{{ if strings.HasPrefix .url "http" }} target="_blank" rel="noreferrer"{{ end }}>{{ .value | default .url }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="empty-state">No contact links are published yet.</p>
+  {{ end }}
+</main>
+{{ end }}

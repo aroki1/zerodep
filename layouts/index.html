@@ -1,0 +1,28 @@
+{{ define "main" }}
+{{ $nav := sort hugo.Data.navigation "position" }}
+<main id="content" class="home-main page--home" tabindex="-1">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-copy">
+      <div class="home-title-row">
+        <h1 id="home-title" aria-label="{{ .Params.nickname }}">
+          <span>zero</span>
+          <span>dependencies.dev</span>
+        </h1>
+      </div>
+      <p class="home-intro">{{ .Params.intro }}</p>
+
+      <nav class="home-index" aria-label="Primary">
+        <ol class="home-index__list">
+          {{ range $nav }}
+            <li>
+              <a class="home-index__link" href="{{ .url }}">
+                <span>/{{ lower .label }}</span>
+              </a>
+            </li>
+          {{ end }}
+        </ol>
+      </nav>
+    </div>
+  </section>
+</main>
+{{ end }}

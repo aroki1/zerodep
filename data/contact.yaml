@@ -1,0 +1,12 @@
+- label: Email
+  value: dev@zerodependencies.dev
+  url: "mailto:dev@zerodependencies.dev"
+  kind: email
+  icon: mail
+  copyable: true
+- label: GitHub
+  value: github.com/aroki1
+  url: "https://github.com/aroki1"
+  kind: github
+  icon: github
+  copyable: false

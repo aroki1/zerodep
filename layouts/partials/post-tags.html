@@ -1,0 +1,9 @@
+{{- with .GetTerms "tags" -}}
+  <ul class="tag-list" aria-label="Post tags">
+    {{- range . -}}
+      <li>
+        <a class="tag-link" href="{{ .RelPermalink }}">#{{ lower .LinkTitle }}</a>
+      </li>
+    {{- end -}}
+  </ul>
+{{- end -}}

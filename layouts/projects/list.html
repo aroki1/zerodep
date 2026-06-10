@@ -1,0 +1,20 @@
+{{ define "main" }}
+<main id="content" class="page-main page--projects" tabindex="-1">
+  <header class="page-header">
+    {{ $projects := hugo.Data.projects }}
+    <h1>projects<span class="page-title-count">[{{ len $projects }}]</span></h1>
+  </header>
+  <div class="content">
+    {{ .Content }}
+  </div>
+  {{ if hugo.Data.projects }}
+    <section class="project-grid" aria-label="Projects">
+      {{ range hugo.Data.projects }}
+        {{ partial "project-card.html" . }}
+      {{ end }}
+    </section>
+  {{ else }}
+    <p class="empty-state">No projects are published yet.</p>
+  {{ end }}
+</main>
+{{ end }}

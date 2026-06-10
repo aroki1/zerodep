@@ -1,0 +1,12 @@
+{{- $icon := .Get "icon" -}}
+{{- $href := .Get "href" -}}
+{{- $label := .Get "label" | default $href -}}
+
+<p class="icon-link">
+  {{- with $icon -}}
+    <span class="icon-link__icon" aria-hidden="true">
+      {{ readFile (printf "static/icons/%s.svg" .) | safeHTML }}
+    </span>
+  {{- end -}}
+  <a href="{{ $href }}"{{ if strings.HasPrefix $href "http" }} target="_blank" rel="noreferrer"{{ end }}>{{ $label }}</a>
+</p>

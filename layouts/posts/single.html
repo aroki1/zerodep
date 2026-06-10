@@ -1,0 +1,17 @@
+{{ define "main" }}
+<main id="content" class="page-main page-main--centered prose page--post" tabindex="-1">
+  <article>
+    <header class="page-header">
+      <p class="eyebrow">blog</p>
+      <h1>{{ lower .Title }}</h1>
+      <div class="post-meta-row">
+        <time class="post-meta" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01/02/2006" }}</time>
+        {{ partial "post-tags.html" . }}
+      </div>
+    </header>
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </article>
+</main>
+{{ end }}

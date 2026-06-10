@@ -1,0 +1,19 @@
+<article class="project-card">
+  {{ with .preview }}
+    <div class="project-card__preview">
+      <img src="{{ . }}" alt="{{ $.alt }}">
+    </div>
+  {{ end }}
+  <div class="project-card__body">
+    <h2 class="project-card__title">
+      {{ with .url }}
+        <a href="{{ . }}"{{ if strings.HasPrefix . "http" }} target="_blank" rel="noreferrer"{{ end }}>{{ $.title }}</a>
+      {{ else }}
+        {{ $.title }}
+      {{ end }}
+    </h2>
+    {{ with .description }}
+      <p>{{ . }}</p>
+    {{ end }}
+  </div>
+</article>

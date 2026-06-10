@@ -1,0 +1,14 @@
+{{ $page := .Page }}
+{{ $class := .Class | default "" }}
+<nav class="nav {{ $class }}" aria-label="Primary">
+  <ul class="nav__list">
+    {{ $current := $page.RelPermalink }}
+    {{ range sort hugo.Data.navigation "position" }}
+      <li>
+        <a class="nav__link" href="{{ .url }}"{{ if eq $current .url }} aria-current="page"{{ end }}>
+          /{{ lower .label }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</nav>

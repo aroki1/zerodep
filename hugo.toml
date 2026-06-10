@@ -1,0 +1,28 @@
+baseURL = "https://zerodependencies.dev/"
+locale = "en"
+title = "zerodependencies.dev"
+enableRobotsTXT = true
+cleanDestinationDir = true
+cacheDir = "/tmp/hugo_cache/zerodependencies-dev"
+
+[params]
+description = "Static blog about software engineering."
+author = "zerodependencies"
+
+[taxonomies]
+tag = "tags"
+
+[permalinks]
+posts = "/blog/:slug/"
+
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML"]
+term = ["HTML"]
+
+[markup.goldmark.renderer]
+unsafe = false
+
+[minify]
+minifyOutput = true

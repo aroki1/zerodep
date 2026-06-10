@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{ with .Data.Terms }}
+  <main id="content" class="page-main page-main--centered page--tags" tabindex="-1">
+    <header class="page-header">
+      <h1>{{ lower $.Title }}<span class="page-title-count">[{{ len . }}]</span></h1>
+    </header>
+    <ul class="taxonomy-list" aria-label="Tags">
+      {{ range .Alphabetical }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}">#{{ lower .Page.LinkTitle }}</a>
+          <span>[{{ .Count }}]</span>
+        </li>
+      {{ end }}
+    </ul>
+  </main>
+{{ else }}
+  {{ $posts := where .Pages "Draft" false }}
+  <main id="content" class="page-main page--tag" tabindex="-1">
+    <header class="page-header">
+      <p class="eyebrow">tag</p>
+      <h1>#{{ lower .Title }}<span class="page-title-count">[{{ len $posts }}]</span></h1>
+    </header>
+    {{ if $posts }}
+      <ol class="post-list" aria-label="Posts tagged {{ .Title }}">
+        {{ range $posts.ByDate.Reverse }}
+          <li class="post-list__item">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01/02/2006" }}</time>
+            <div class="post-list__body">
+              <a class="post-list__title" href="{{ .RelPermalink }}">
+                <span>{{ lower .Title }}</span>
+              </a>
+              {{ with .Params.description }}
+                <p class="post-list__description">{{ . }}</p>
+              {{ end }}
+              {{ partial "post-tags.html" . }}
+            </div>
+          </li>
+        {{ end }}
+      </ol>
+    {{ else }}
+      <p class="empty-state">No posts use this tag yet.</p>
+    {{ end }}
+  </main>
+{{ end }}
+{{ end }}

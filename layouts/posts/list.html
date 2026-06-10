@@ -1,0 +1,38 @@
+{{ define "main" }}
+<main id="content" class="page-main page--blog" tabindex="-1">
+  {{ $posts := where .Pages "Draft" false }}
+  <header class="page-header">
+    <h1>
+      <span>blog<span class="page-title-count">[{{ len $posts }}]</span></span>
+      {{ with .OutputFormats.Get "RSS" }}
+        <a class="feed-link feed-link--heading" href="{{ .RelPermalink }}">rss</a>
+      {{ end }}
+    </h1>
+  </header>
+  {{ with .Content }}
+    <div class="content">
+      {{ . }}
+    </div>
+  {{ end }}
+  {{ if $posts }}
+    <ol class="post-list" aria-label="Published posts">
+      {{ range $posts.ByDate.Reverse }}
+        <li class="post-list__item">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01/02/2006" }}</time>
+          <div class="post-list__body">
+            <a class="post-list__title" href="{{ .RelPermalink }}">
+              <span>{{ lower .Title }}</span>
+            </a>
+            {{ with .Params.description }}
+              <p class="post-list__description">{{ . }}</p>
+            {{ end }}
+            {{ partial "post-tags.html" . }}
+          </div>
+        </li>
+      {{ end }}
+    </ol>
+  {{ else }}
+    <p class="empty-state">No posts are published yet.</p>
+  {{ end }}
+</main>
+{{ end }}

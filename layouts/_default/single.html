@@ -1,0 +1,12 @@
+{{ define "main" }}
+<main id="content" class="page-main page-main--centered prose page--{{ .File.BaseFileName | urlize }}" tabindex="-1">
+  <article>
+    <header class="page-header">
+      <h1>{{ lower .Title }}</h1>
+    </header>
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </article>
+</main>
+{{ end }}

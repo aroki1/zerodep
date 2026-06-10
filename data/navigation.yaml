@@ -1,0 +1,12 @@
+- label: About
+  url: /about/
+  position: 1
+- label: Projects
+  url: /projects/
+  position: 2
+- label: Blog
+  url: /blog/
+  position: 3
+- label: Contact
+  url: /contact/
+  position: 4
