@@ -5,7 +5,7 @@ with .Params.description }} {{ $description = . }} {{ end }}
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="{{ $description }}" />
 <title>{{ $title }}</title>
-<link rel="icon" type="image/png" href="/static/images/logo.png" />
+<link rel="icon" type="image/png" href="{{ "images/logo.png" | relURL }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
 {{ with resources.Get "css/main.css" }} {{ $css := . | resources.Minify |
 resources.Fingerprint }}
